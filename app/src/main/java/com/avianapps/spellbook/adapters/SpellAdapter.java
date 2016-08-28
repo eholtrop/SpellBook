@@ -36,7 +36,7 @@ public class SpellAdapter extends RecyclerView.Adapter {
     public SpellAdapter(List<Spell> spells) {
         Spells = spells;
         Collections.sort(Spells, new Comparators.SpellLevelComparator());
-        filteredList = Spells;
+        setFilter("");
     }
 
     @Override

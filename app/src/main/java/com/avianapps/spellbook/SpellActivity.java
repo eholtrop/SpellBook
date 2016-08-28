@@ -48,7 +48,7 @@ public class SpellActivity extends AppCompatActivity {
         super.onResume();
 
         getSupportActionBar().setTitle(spell.name);
-        Description.setText(Html.fromHtml(boldDiceRolls(spell.description)  + getResources().getString(R.string.large_text)));
+        Description.setText(Html.fromHtml(boldDiceRolls(spell.description)));
     }
 
     @Override
