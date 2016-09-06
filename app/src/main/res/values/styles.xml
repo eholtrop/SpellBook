@@ -17,4 +17,20 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="SpellHeader" parent="AppTheme">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/primary_text_light</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+    <style name="SpellSubHeader" parent="AppTheme">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@android:color/secondary_text_dark</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
+    <style name="SpellDescription" parent="AppTheme">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@android:color/tertiary_text_dark</item>
+    </style>
+
 </resources>

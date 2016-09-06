@@ -9,10 +9,12 @@ public class Spell {
     public String name;
     @SerializedName("desc")
     public String description;
+    @SerializedName("higher_level")
+    public String higherLevel;
     public String range;
     public String components;
     public String material;
-    public Boolean ritual;
+    public String ritual;
     public String duration;
     public Boolean concentration;
     public String castingTime;
@@ -21,4 +23,5 @@ public class Spell {
     @SerializedName("class")
     public String classes;
     public String circle;
+    public String page;
 }

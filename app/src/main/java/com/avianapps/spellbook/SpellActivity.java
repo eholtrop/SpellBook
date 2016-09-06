@@ -23,6 +23,26 @@ public class SpellActivity extends AppCompatActivity {
 
     @Bind(R.id.description)
     public TextView Description;
+    @Bind(R.id.higher_level)
+    public TextView higherLevel;
+
+    @Bind(R.id.level)
+    public LabelTextView level;
+    @Bind(R.id.classes)
+    public LabelTextView classes;
+    @Bind(R.id.components)
+    public LabelTextView components;
+    @Bind(R.id.school)
+    public LabelTextView school;
+    @Bind(R.id.ritual)
+    public LabelTextView ritual;
+    @Bind(R.id.range)
+    public LabelTextView range;
+    @Bind(R.id.duration)
+    public LabelTextView duration;
+    @Bind(R.id.page)
+    public LabelTextView page;
+
 
     private Spell spell;
 
@@ -37,18 +57,22 @@ public class SpellActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show());
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
         getSupportActionBar().setTitle(spell.name);
         Description.setText(Html.fromHtml(boldDiceRolls(spell.description)));
+        higherLevel.setText(Html.fromHtml(boldDiceRolls(spell.higherLevel)));
+        level.setText(spell.level);
+        classes.setText(spell.classes);
+        components.setText(spell.components);
+        school.setText(spell.school);
+        ritual.setText(spell.ritual);
+        range.setText(spell.range);
+        duration.setText(spell.duration);
+        page.setText(spell.page);
     }
 
     @Override
@@ -64,6 +88,7 @@ public class SpellActivity extends AppCompatActivity {
 
     public String regex = "\\(*[0-9]+d[0-9]+\\)*";
     public String boldDiceRolls(String string) {
+        if(string == null) return "";
         String[] strings = string.split(" ");
         StringBuilder builder = new StringBuilder();
 
