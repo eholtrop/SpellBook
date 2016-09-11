@@ -18,13 +18,23 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.avianapps.spellbook.adapters.SpellAdapter;
 import com.avianapps.spellbook.models.Spell;
+import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.jakewharton.rxbinding.support.v7.widget.RxRecyclerView;
+import com.jakewharton.rxbinding.support.v7.widget.RxSearchView;
+import com.jakewharton.rxbinding.support.v7.widget.SearchViewQueryTextEvent;
+import com.jakewharton.rxbinding.view.RxView;
+import com.jakewharton.rxbinding.widget.RxAdapter;
+import com.jakewharton.rxbinding.widget.RxAdapterView;
 
+import butterknife.OnItemSelected;
+import io.fabric.sdk.android.Fabric;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -45,9 +55,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Bind(R.id.search)
     public SearchView Search;
 
+    @Bind(R.id.classes)
+    public Spinner Classes;
+    @Bind(R.id.levels)
+    public Spinner Levels;
+
+    SpellAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -62,23 +80,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        SpellAdapter adapter = new SpellAdapter(parseSpellJson());
+        adapter = new SpellAdapter(parseSpellJson());
         List.setLayoutManager(new LinearLayoutManager(this));
         List.setAdapter(adapter);
 
+        RxSearchView.queryTextChangeEvents(Search)
+                .map(SearchViewQueryTextEvent::queryText)
+                .map(CharSequence::toString)
+                .subscribe(adapter::setNameFilter);
 
-        Search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
+//        RxAdapterView.selectionEvents(Levels)
+//                .map(x -> x.view())
+//                .map(x -> x.getSelectedItem())
+//                .map(x -> x.toString())
+//                .subscribe(x -> adapter.setLevelFilter(x));
+    }
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                adapter.setFilter(newText);
-                return true;
-            }
-        });
+    @OnItemSelected(R.id.levels)
+    public void levelSelected(Spinner s) {
+        if(s.getSelectedItemPosition() == 0) {
+            adapter.setLevelFilter("");
+        } else {
+            adapter.setLevelFilter(s.getSelectedItem().toString());
+        }
+    }
+
+    @OnItemSelected(R.id.classes)
+    public void classSelected(Spinner s) {
+        if(s.getSelectedItemPosition() == 0) {
+        adapter.setClassFilter("");
+    } else {
+        adapter.setClassFilter(s.getSelectedItem().toString());
+    }
     }
 
     public List<Spell> parseSpellJson() {

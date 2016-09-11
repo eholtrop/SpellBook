@@ -17,19 +17,42 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             app:layout_scrollFlags="enterAlways">
             <android.support.v7.widget.SearchView
                 android:id="@+id/search"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </FrameLayout>
+                android:layout_height="?attr/actionBarSize"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:orientation="horizontal">
+                <Spinner
+                    android:id="@id/classes"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:entries="@array/classes"/>
+                <Spinner
+                    android:id="@+id/levels"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:entries="@array/spell_levels"/>
+            </LinearLayout>
+        </LinearLayout>
 
     </android.support.design.widget.AppBarLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No Spells"/>
     <include layout="@layout/content_main" />
 
 </android.support.design.widget.CoordinatorLayout>

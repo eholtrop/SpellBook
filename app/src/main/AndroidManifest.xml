@@ -24,6 +24,10 @@
             android:name=".SpellActivity"
             android:label="@string/title_activity_spell"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="b1857c893da852ec069d9231c3518388a64200aa" />
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

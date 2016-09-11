@@ -8,10 +8,13 @@ import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.avianapps.spellbook.models.Spell;
 import com.google.gson.Gson;
+import com.jakewharton.rxbinding.view.RxView;
+import com.jakewharton.rxbinding.widget.RxAdapter;
 
 import java.util.regex.Pattern;
 
@@ -42,6 +45,7 @@ public class SpellActivity extends AppCompatActivity {
     public LabelTextView duration;
     @Bind(R.id.page)
     public LabelTextView page;
+
 
 
     private Spell spell;

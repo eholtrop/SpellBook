@@ -95,4 +95,41 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+
+    <string-array name="spell_levels">
+        <item>All</item>
+        <item>Cantrip</item>
+        <item>1st-level</item>
+        <item>2nd-level</item>
+        <item>3rd-level</item>
+        <item>4th-level</item>
+        <item>5th-level</item>
+        <item>6th-level</item>
+        <item>7th-level</item>
+        <item>8th-level</item>
+        <item>9th-level</item>
+        <item>10th-level</item>
+        <item>11th-level</item>
+        <item>12th-level</item>
+        <item>13th-level</item>
+        <item>14th-level</item>
+        <item>15th-level</item>
+        <item>16th-level</item>
+        <item>17th-level</item>
+        <item>18th-level</item>
+        <item>19th-level</item>
+        <item>20th-level</item>
+    </string-array>
+
+    <string-array name="classes">
+        <item>All</item>
+        <item>Bard</item>
+        <item>Cleric</item>
+        <item>Druid</item>
+        <item>Ranger</item>
+        <item>Sorcerer</item>
+        <item>Paladin</item>
+        <item>Warlock</item>
+        <item>Wizard</item>
+    </string-array>
 </resources>
